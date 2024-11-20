@@ -28,8 +28,8 @@ pd_df = my_dataframe.to_pandas()
 st.dataframe(pd_df)
 st.stop
 
-ingredients_list = st.multiselect('choose up to 5 ingredients', my_dataframe)
-                                 #max_selections = 5)
+ingredients_list = st.multiselect('choose up to 5 ingredients', my_dataframe
+                                 ,max_selections = 5)
 
 if ingredients_list:
     #st.write(ingredients_list)
@@ -41,8 +41,8 @@ if ingredients_list:
         search_on=pd_df.loc[pd_df['FRUIT_NAME'] == choosen_fruit, 'SEARCH_ON'].iloc[0]
         #st.write('The search value for ', choosen_fruit,' is ', search_on, '.')
         
-        st.subheader(choosen_fruit + 'nutrition information')
-        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/"+choosen_fruit)
+        st.subheader(choosen_fruit + ' nutrition information')
+        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/"+search_on)
         sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
     st.write(ingredients_string)
 
